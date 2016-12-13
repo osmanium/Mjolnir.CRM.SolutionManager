@@ -29,6 +29,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CRMSolutionManager.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.2.0.1\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
@@ -40,6 +46,10 @@
     </Reference>
     <Reference Include="Microsoft.Xrm.Sdk, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.2.0.1\lib\net45\Microsoft.Xrm.Sdk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -74,12 +84,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="CRMSolutionManager.snk" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Business\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Js\CRMSolutionManagerLibrary.js" />
+    <Content Include="Js\JSON2.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(TargetDir)\ILMerge.exe" copy "$(ProjectDir)..\..\Tools\ILMerge.exe" "$(TargetDir)"
+copy /Y "$(ProjectDir)CRMSolutionManager.snk"  "$(TargetDir)CRMSolutionManager.snk"
+IF NOT EXIST "$(TargetDir)MergedCRMSolutionManager" MKDIR "$(TargetDir)MergedCRMSolutionManager"
+"$(TargetDir)ilmerge" /keyfile:CRMSolutionManager.snk  /copyattrs /targetplatform:4.0,"C:\Windows\Microsoft.NET\Framework64\v4.0.30319" /out:"$(TargetDir)MergedCRMSolutionManager\OG.CRM.CRMSolutionManagerMerged.dll" "OG.CRM.Common.dll" "OG.CRM.CRMSolutionManager.dll" "OG.CRM.JavaScriptOperation.dll" "Newtonsoft.Json.dll"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

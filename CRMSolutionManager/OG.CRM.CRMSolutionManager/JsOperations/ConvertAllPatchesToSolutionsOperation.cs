@@ -12,7 +12,6 @@ namespace OG.CRM.CRMSolutionManager.JsOperations
     public class ConvertAllPatchesToSolutionsRequest : JavaScriptOperationRequestBase
     {
         //TODO: Update here, dummy
-        public string SolutionName { get; set; }
     }
 
     public class ConvertAllPatchesToSolutionsReponse
@@ -22,11 +21,12 @@ namespace OG.CRM.CRMSolutionManager.JsOperations
 
     public class ConvertAllPatchesToSolutionsOperation : JavaScriptOperationBase<ConvertAllPatchesToSolutionsRequest, ConvertAllPatchesToSolutionsReponse>
     {
-        public override ConvertAllPatchesToSolutionsReponse ExecuteInternal(ConvertAllPatchesToSolutionsReponse req)
+        public override ConvertAllPatchesToSolutionsReponse ExecuteInternal(ConvertAllPatchesToSolutionsRequest req, PluginContext context)
         {
             //TODO: Some operations
 
-            return null;
+            context.TracingService.Trace("from the ConvertAllPatchesToSolutionsOperation execute internal");
+            return new ConvertAllPatchesToSolutionsReponse();
         }
     }
 }

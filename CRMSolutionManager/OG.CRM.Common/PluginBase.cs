@@ -11,17 +11,23 @@ namespace OG.CRM.Common
 {
     public abstract class PluginBase : IPlugin
     {
-        public ITracingService tracingService { get; private set; }
-        
+        protected PluginContext PluginContext { get; private set; }
 
         public void Execute(IServiceProvider serviceProvider)
         {
-            this.tracingService = (ITracingService)serviceProvider.GetService(typeof(ITracingService));
+            var tracingService = (ITracingService)serviceProvider.GetService(typeof(ITracingService));
+            var pluginExecutionContext = (IPluginExecutionContext)serviceProvider.GetService(typeof(IPluginExecutionContext));
+            var organizationServiceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
 
-            ExecuteInternal(this.tracingService);
+            var organizationService = organizationServiceFactory.CreateOrganizationService(pluginExecutionContext.UserId);
+
+            this.PluginContext = new PluginContext(tracingService, pluginExecutionContext, organizationService, serviceProvider, pluginExecutionContext.UserId);
+
+            
+            ExecuteInternal(this.PluginContext);
 
         }
 
-        public abstract void ExecuteInternal(ITracingService tracingService);
+        public abstract void ExecuteInternal(PluginContext pluginContext);
     }
 }
