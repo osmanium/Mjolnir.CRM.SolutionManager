@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Js\CRMSolutionManagerLibrary.js" />
+    <Content Include="Js\jquery_3.1.1.min.js" />
     <Content Include="Js\JSON2.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
