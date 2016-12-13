@@ -95,6 +95,7 @@
     <Compile Include="JavaScriptOperationBase.cs" />
     <Compile Include="JavaScriptOperationPlugin.cs" />
     <Compile Include="JavaScriptOperationRequestBase.cs" />
+    <Compile Include="JavaScriptOperationResponseBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

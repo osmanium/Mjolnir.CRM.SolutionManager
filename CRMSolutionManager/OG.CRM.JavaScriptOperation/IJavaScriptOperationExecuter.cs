@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace OG.CRM.JavaScriptOperation
 {
-    public interface IJavaScriptOperationExecuter<TRequest, TResponse>
+    public interface IJavaScriptOperationExecuter
     {
-        TResponse Execute(string input, PluginContext context);
+        string Execute(string input, PluginContext context);
     }
 }

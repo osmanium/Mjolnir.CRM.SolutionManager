@@ -14,7 +14,7 @@ namespace OG.CRM.CRMSolutionManager.JsOperations
         //TODO: Update here, dummy
     }
 
-    public class ConvertAllPatchesToSolutionsReponse
+    public class ConvertAllPatchesToSolutionsReponse : JavaScriptOperationResponseBase
     {
         //TODO: Update here, dummy
     }

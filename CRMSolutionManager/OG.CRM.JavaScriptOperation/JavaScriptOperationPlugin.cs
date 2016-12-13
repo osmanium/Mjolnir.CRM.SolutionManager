@@ -96,7 +96,14 @@ namespace OG.CRM.JavaScriptOperation
                     {
                         var response = operationExecuterInstance.Execute(sInputParameter, pluginContext);
 
-                        //TODO:Return response
+                        //Return response
+                        EntityCollection outputEntities = (EntityCollection)pluginContext.PluginExecutionContext.OutputParameters["BusinessEntityCollection"];
+                        Entity entity = new Entity("mjolnir_jsoperation_io");
+                        entity["mjolnir_input"] = sInputParameter;
+                        entity["mjolnir_output"] = response;
+                        entity["mjolnir_jsoperationname"] = sOperation;
+                        entity["mjolnir_jsoperation_ioid"] = Guid.NewGuid();
+                        outputEntities.Entities.Add(entity);
 
                         pluginContext.TracingService.Trace("execution is completed");
                     }
