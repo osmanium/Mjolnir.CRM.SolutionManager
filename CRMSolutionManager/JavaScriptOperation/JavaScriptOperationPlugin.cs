@@ -87,7 +87,7 @@ namespace JavaScriptOperation
                 {
                     //Get the generic type, first generic input type
                     Type requestType = operationType.BaseType.GenericTypeArguments[0];
-                    
+
                     //Initiate executer
                     dynamic operationExecuterInstance = Activator.CreateInstance(operationType);
 
@@ -97,15 +97,29 @@ namespace JavaScriptOperation
                         var response = operationExecuterInstance.Execute(sInputParameter, pluginContext);
 
                         //Return response
-                        EntityCollection outputEntities = (EntityCollection)pluginContext.PluginExecutionContext.OutputParameters["BusinessEntityCollection"];
-                        Entity entity = new Entity("mjolnir_jsoperation_io");
-                        entity["mjolnir_input"] = sInputParameter;
-                        entity["mjolnir_output"] = response;
-                        entity["mjolnir_jsoperationname"] = sOperation;
-                        entity["mjolnir_jsoperation_ioid"] = Guid.NewGuid();
-                        outputEntities.Entities.Add(entity);
+                        try
+                        {
+                            if (!pluginContext.PluginExecutionContext.OutputParameters.ContainsKey("BusinessEntityCollection"))
+                            {
+                                pluginContext.PluginExecutionContext.OutputParameters.Add("BusinessEntityCollection", new EntityCollection());
+                            }
 
-                        pluginContext.TracingService.Trace("execution is completed");
+                            var output = (EntityCollection)pluginContext.PluginExecutionContext.OutputParameters["BusinessEntityCollection"];
+
+                            EntityCollection outputEntities = (EntityCollection)output;
+                            Entity entity = new Entity("mjolnir_jsoperation_io");
+                            entity["mjolnir_input"] = sInputParameter;
+                            entity["mjolnir_output"] = response;
+                            entity["mjolnir_jsoperationname"] = sOperation;
+                            entity["mjolnir_jsoperation_ioid"] = Guid.NewGuid();
+                            outputEntities.Entities.Add(entity);
+
+                            pluginContext.TracingService.Trace("execution is completed");
+                        }
+                        catch (Exception ex)
+                        {
+                            pluginContext.TracingService.Trace($"error : {ex.Message}");
+                        }
                     }
                     else
                     {

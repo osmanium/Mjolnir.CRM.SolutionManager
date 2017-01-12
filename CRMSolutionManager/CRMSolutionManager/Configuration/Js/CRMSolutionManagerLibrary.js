@@ -1,7 +1,7 @@
 ﻿
 function executeJsOperation(operation, input, successCallback, errorCallback) {
     var req = new XMLHttpRequest();
-    req.open("GET", Xrm.Page.context.getClientUrl() + "/api/data/v8.2/mjolnir_jsoperation_ios?$select=mjolnir_input,mjolnir_jsoperation_ioid,mjolnir_jsoperationname,mjolnir_output&$filter=mjolnir_input eq '" + input + "' and  mjolnir_jsoperationname eq '" + operation + "'", true);
+    req.open("GET", Xrm.Page.context.getClientUrl() + "/api/data/v8.1/mjolnir_jsoperation_ios?$select=mjolnir_input,mjolnir_jsoperation_ioid,mjolnir_jsoperationname,mjolnir_output&$filter=mjolnir_input eq '" + input + "' and  mjolnir_jsoperationname eq '" + operation + "'", true);
     req.setRequestHeader("OData-MaxVersion", "4.0");
     req.setRequestHeader("OData-Version", "4.0");
     req.setRequestHeader("Accept", "application/json");
@@ -32,20 +32,46 @@ function executeJsOperation(operation, input, successCallback, errorCallback) {
     req.send();
 }
 
-var operation = 'CRMSolutionManager.JsOperations.ConvertAllPatchesToSolutionsOperation';
-var inputObj = {}
+function PatchToSolution() {
+    debugger;
+    var operation = 'CRMSolutionManager.JsOperations.ConvertPatchesToSolutionsOperation';
+    var inputObj = {}
 
-var inputJson = JSON.stringify(inputObj);
+    var inputJson = JSON.stringify(inputObj);
 
-executeJsOperation(operation, inputJson,
-    function (io_obj) {
+    executeJsOperation(operation, inputJson,
+        function (io_obj) {
 
-        var resultString = io_obj.mjolnir_output;
-        var resultObj = jQuery.parseJSON(io_obj.mjolnir_output);
+            var resultString = io_obj.mjolnir_output;
+            var resultObj = jQuery.parseJSON(io_obj.mjolnir_output);
 
-        alert(resultObj.IsSuccesful);
-    },
-    function (error) {
-        alert(error);
-    }
-);
+            alert(resultObj.IsSuccesful);
+        },
+        function (error) {
+            alert(error);
+        }
+    );
+
+}
+
+function ApplySolutionUpgrade() {
+
+    var operation = 'CRMSolutionManager.JsOperations.ApplySolutionUpgradeOperation';
+    var inputObj = {}
+
+    var inputJson = JSON.stringify(inputObj);
+
+    executeJsOperation(operation, inputJson,
+        function (io_obj) {
+
+            var resultString = io_obj.mjolnir_output;
+            var resultObj = jQuery.parseJSON(io_obj.mjolnir_output);
+
+            alert(resultObj.IsSuccesful);
+        },
+        function (error) {
+            alert(error);
+        }
+    );
+
+}

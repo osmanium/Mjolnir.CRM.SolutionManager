@@ -70,15 +70,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsOperations\ConvertAllPatchesToSolutionsOperation.cs" />
+    <Compile Include="JsOperations\ApplySolutionUpgradeOperation.cs" />
+    <Compile Include="JsOperations\ConvertPatchesToSolutionsOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OG.CRM.Common\Common.csproj">
+    <ProjectReference Include="..\Common\Common.csproj">
       <Project>{c2d2815e-0618-4daf-9829-c96ad1abf54f}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OG.CRM.JavaScriptOperation\JavaScriptOperation.csproj">
+    <ProjectReference Include="..\JavaScriptOperation\JavaScriptOperation.csproj">
       <Project>{763fa72c-80fa-4c76-8ab4-85bc61ec73c5}</Project>
       <Name>JavaScriptOperation</Name>
     </ProjectReference>

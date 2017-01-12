@@ -102,7 +102,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OG.CRM.Common\Common.csproj">
+    <ProjectReference Include="..\Common\Common.csproj">
       <Project>{c2d2815e-0618-4daf-9829-c96ad1abf54f}</Project>
       <Name>Common</Name>
     </ProjectReference>
