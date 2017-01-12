@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace OG.CRM.SolutionManager.UnitTests
+namespace SolutionManager.UnitTests
 {
     [TestClass]
     public class SolutionManagerTests

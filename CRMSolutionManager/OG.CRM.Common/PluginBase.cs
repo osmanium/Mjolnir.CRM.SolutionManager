@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OG.CRM.Common
+namespace Common
 {
     public abstract class PluginBase : IPlugin
     {

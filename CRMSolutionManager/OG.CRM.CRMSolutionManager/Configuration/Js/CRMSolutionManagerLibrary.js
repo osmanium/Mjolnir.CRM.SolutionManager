@@ -32,7 +32,7 @@ function executeJsOperation(operation, input, successCallback, errorCallback) {
     req.send();
 }
 
-var operation = 'OG.CRM.CRMSolutionManager.JsOperations.ConvertAllPatchesToSolutionsOperation';
+var operation = 'CRMSolutionManager.JsOperations.ConvertAllPatchesToSolutionsOperation';
 var inputObj = {}
 
 var inputJson = JSON.stringify(inputObj);

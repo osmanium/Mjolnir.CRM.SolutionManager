@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xrm.Sdk;
-using OG.CRM.Common;
+using Common;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace OG.CRM.JavaScriptOperation
+namespace JavaScriptOperation
 {
     public abstract class JavaScriptOperationBase<TRequest, TResponse> : IJavaScriptOperationExecuter
         where TResponse : JavaScriptOperationResponseBase, new()
@@ -28,7 +28,7 @@ namespace OG.CRM.JavaScriptOperation
                 request = DeserizalizeRequest(input);
 
                 //Execute
-                response = ExecuteInternal(request, context);
+                response = ExecuteInternal(request, response, context);
                 response.IsSuccesful = true;
             }
             catch (Exception ex)
@@ -95,6 +95,6 @@ namespace OG.CRM.JavaScriptOperation
             return request;
         }
 
-        public abstract TResponse ExecuteInternal(TRequest req, PluginContext context);
+        public abstract TResponse ExecuteInternal(TRequest req, TResponse res, PluginContext context);
     }
 }

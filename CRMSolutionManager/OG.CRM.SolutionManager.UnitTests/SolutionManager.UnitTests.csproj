@@ -6,8 +6,8 @@
     <ProjectGuid>{2C6446E0-E2BD-4559-A8C8-243228BB39E2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OG.CRM.SolutionManager.UnitTests</RootNamespace>
-    <AssemblyName>OG.CRM.SolutionManager.UnitTests</AssemblyName>
+    <RootNamespace>SolutionManager.UnitTests</RootNamespace>
+    <AssemblyName>SolutionManager.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,17 +55,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OG.CRM.Common\OG.CRM.Common.csproj">
+    <ProjectReference Include="..\OG.CRM.Common\Common.csproj">
       <Project>{c2d2815e-0618-4daf-9829-c96ad1abf54f}</Project>
-      <Name>OG.CRM.Common</Name>
+      <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OG.CRM.CRMSolutionManager\OG.CRM.CRMSolutionManager.csproj">
+    <ProjectReference Include="..\OG.CRM.CRMSolutionManager\CRMSolutionManager.csproj">
       <Project>{3812eea5-7296-4ad0-b9bf-3f16d5cac7a8}</Project>
-      <Name>OG.CRM.CRMSolutionManager</Name>
+      <Name>CRMSolutionManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OG.CRM.JavaScriptOperation\OG.CRM.JavaScriptOperation.csproj">
+    <ProjectReference Include="..\OG.CRM.JavaScriptOperation\JavaScriptOperation.csproj">
       <Project>{763fa72c-80fa-4c76-8ab4-85bc61ec73c5}</Project>
-      <Name>OG.CRM.JavaScriptOperation</Name>
+      <Name>JavaScriptOperation</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xrm.Sdk;
-using OG.CRM.Common;
-using OG.CRM.JavaScriptOperation;
+using Common;
+using CRMSolutionManager.JsOperations;
+using JavaScriptOperation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OG.CRM.CRMSolutionManager.JsOperations
+namespace CRMSolutionManager.JsOperations
 {
     public class ConvertAllPatchesToSolutionsRequest : JavaScriptOperationRequestBase
     {
@@ -21,12 +22,12 @@ namespace OG.CRM.CRMSolutionManager.JsOperations
 
     public class ConvertAllPatchesToSolutionsOperation : JavaScriptOperationBase<ConvertAllPatchesToSolutionsRequest, ConvertAllPatchesToSolutionsReponse>
     {
-        public override ConvertAllPatchesToSolutionsReponse ExecuteInternal(ConvertAllPatchesToSolutionsRequest req, PluginContext context)
+        public override ConvertAllPatchesToSolutionsReponse ExecuteInternal(ConvertAllPatchesToSolutionsRequest req, ConvertAllPatchesToSolutionsReponse res,PluginContext context)
         {
             //TODO: Some operations
 
             context.TracingService.Trace("from the ConvertAllPatchesToSolutionsOperation execute internal");
-            return new ConvertAllPatchesToSolutionsReponse();
+            return res;
         }
     }
 }

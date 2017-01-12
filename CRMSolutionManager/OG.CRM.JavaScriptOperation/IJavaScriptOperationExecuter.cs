@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xrm.Sdk;
-using OG.CRM.Common;
+using Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OG.CRM.JavaScriptOperation
+namespace JavaScriptOperation
 {
     public interface IJavaScriptOperationExecuter
     {

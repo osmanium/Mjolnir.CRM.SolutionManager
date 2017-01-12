@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OG.CRM.Common
+namespace Common
 {
     public class PluginContext
     {

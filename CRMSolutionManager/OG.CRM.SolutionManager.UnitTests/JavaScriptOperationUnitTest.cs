@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OG.CRM.SolutionManager.UnitTests
+namespace SolutionManager.UnitTests
 {
     [TestClass]
     public class JavaScriptOperationUnitTest

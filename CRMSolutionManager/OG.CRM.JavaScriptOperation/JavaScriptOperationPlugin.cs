@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using Newtonsoft.Json;
-using OG.CRM.Common;
-using OG.CRM.JavaScriptOperation;
+using Common;
+using JavaScriptOperation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OG.CRM.JavaScriptOperation
+namespace JavaScriptOperation
 {
     public class JavaScriptOperationPlugin : PluginBase
     {
@@ -81,7 +81,7 @@ namespace OG.CRM.JavaScriptOperation
 
             if (executingAssembly != null)
             {
-                //"OG.CRM.CRMSolutionManager.ConvertAllPatchesToSolutions"
+                //"CRMSolutionManager.ConvertAllPatchesToSolutions"
                 Type operationType = executingAssembly.GetType(sOperation);
                 if (operationType != null)
                 {
