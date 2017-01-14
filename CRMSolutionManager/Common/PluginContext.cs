@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public class PluginContext
+    public class CRMContext
     {
         public ITracingService TracingService { get; private set; }
         public IPluginExecutionContext PluginExecutionContext { get; private set; }
@@ -16,7 +16,7 @@ namespace Common
 
         public Guid UserId { get; private set; }
 
-        public PluginContext(ITracingService TracingService, IPluginExecutionContext PluginExecutionContext, 
+        public CRMContext(ITracingService TracingService, IPluginExecutionContext PluginExecutionContext, 
             IOrganizationService OrganizationService, IServiceProvider ServiceProvider, Guid UserId)
         {
             this.TracingService = TracingService;

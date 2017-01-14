@@ -14,7 +14,7 @@ namespace JavaScriptOperation
         where TResponse : JavaScriptOperationResponseBase, new()
         where TRequest : JavaScriptOperationRequestBase
     {
-        public string Execute(string input, PluginContext context)
+        public string Execute(string input, CRMContext context)
         {
             TRequest request = null;
             TResponse response = new TResponse();
@@ -25,22 +25,25 @@ namespace JavaScriptOperation
             try
             {
                 //Identify the request type
+                context.TracingService.Trace("DeserizalizeRequest started");
                 request = DeserizalizeRequest(input);
 
                 //Execute
+                context.TracingService.Trace("ExecuteInternal started");
                 response = ExecuteInternal(request, response, context);
                 response.IsSuccesful = true;
             }
             catch (Exception ex)
             {
-                HandleErrorResponse(response, out errorMessage, out isError, ex);
+                HandleErrorResponse(response, out errorMessage, out isError, ex, context);
             }
 
             //Serialize response
+            context.TracingService.Trace("SerializeResponse started");
             return SerializeResponse(response);
         }
 
-        private static void HandleErrorResponse(TResponse response, out string errorMessage, out bool isError, Exception ex)
+        private static void HandleErrorResponse(TResponse response, out string errorMessage, out bool isError, Exception ex, CRMContext context)
         {
             isError = true;
 
@@ -58,6 +61,10 @@ namespace JavaScriptOperation
 
             errorMessage = sb.ToString();
 
+            if (response == null)
+                response = new TResponse();
+
+            context.TracingService.Trace("Error occured :\n" + errorMessage);
             response.ErrorMessage = errorMessage;
         }
 
@@ -95,6 +102,6 @@ namespace JavaScriptOperation
             return request;
         }
 
-        public abstract TResponse ExecuteInternal(TRequest req, TResponse res, PluginContext context);
+        public abstract TResponse ExecuteInternal(TRequest req, TResponse res, CRMContext context);
     }
 }

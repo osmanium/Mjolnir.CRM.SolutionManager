@@ -10,6 +10,6 @@ namespace JavaScriptOperation
 {
     public interface IJavaScriptOperationExecuter
     {
-        string Execute(string input, PluginContext context);
+        string Execute(string input, CRMContext context);
     }
 }

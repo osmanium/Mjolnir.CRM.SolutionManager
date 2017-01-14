@@ -15,7 +15,7 @@ namespace JavaScriptOperation
 {
     public class JavaScriptOperationPlugin : PluginBase
     {
-        public override void ExecuteInternal(PluginContext pluginContext)
+        public override void ExecuteInternal(CRMContext pluginContext)
         {
             #region Validation for correct plugin message and stage
             if (!pluginContext.PluginExecutionContext.PrimaryEntityName.Equals("mjolnir_jsoperation_io") &&

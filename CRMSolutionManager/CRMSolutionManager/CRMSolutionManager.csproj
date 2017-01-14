@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JsOperations\ApplySolutionUpgradeOperation.cs" />
-    <Compile Include="JsOperations\ConvertPatchesToSolutionsOperation.cs" />
+    <Compile Include="JsOperations\ConvertPatchToSolutionsOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +92,7 @@
     <Folder Include="Business\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\mjolnir_icon_16.png" />
     <Content Include="Configuration\Js\CRMSolutionManagerLibrary.js" />
     <Content Include="Configuration\Js\jquery_3.1.1.min.js" />
     <Content Include="Configuration\Js\JSON2.js" />

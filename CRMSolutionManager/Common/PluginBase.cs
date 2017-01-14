@@ -11,7 +11,7 @@ namespace Common
 {
     public abstract class PluginBase : IPlugin
     {
-        protected PluginContext PluginContext { get; private set; }
+        protected CRMContext PluginContext { get; private set; }
 
         public void Execute(IServiceProvider serviceProvider)
         {
@@ -21,13 +21,13 @@ namespace Common
 
             var organizationService = organizationServiceFactory.CreateOrganizationService(pluginExecutionContext.UserId);
 
-            this.PluginContext = new PluginContext(tracingService, pluginExecutionContext, organizationService, serviceProvider, pluginExecutionContext.UserId);
+            this.PluginContext = new CRMContext(tracingService, pluginExecutionContext, organizationService, serviceProvider, pluginExecutionContext.UserId);
 
             
             ExecuteInternal(this.PluginContext);
 
         }
 
-        public abstract void ExecuteInternal(PluginContext pluginContext);
+        public abstract void ExecuteInternal(CRMContext pluginContext);
     }
 }
