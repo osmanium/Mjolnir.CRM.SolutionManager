@@ -1,8 +1,5 @@
 # CRMSolutionManager
 
+A tool for Dynamics CRM 2016
 
-##Dependencies
-*https://alertjs.codeplex.com/
-*https://github.com/douglascrockford/JSON-js
-*https://jquery.com/
-*https://github.com/DefinitelyTyped/DefinitelyTyped/blob/types-2.0/xrm/xrm-7.1.d.ts
+Lates release can be found in [Releases](https://github.com/osmanium/CRMSolutionManager/releases) page.
