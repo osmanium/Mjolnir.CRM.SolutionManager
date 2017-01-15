@@ -18,6 +18,8 @@ CRMSolutionManager brings 2 new features, **Patches To Solution** and **Apply So
  * In conclusion, Solution B is unmanaged and contains only the components which are worked on recently.
  * Decreases solution import time
 
+![Patch To Solution](https://github.com/osmanium/CRMSolutionManager/blob/develop/Docs/patch_to_solution.gif)
+
 * Apply Solution Upgrade, works on selected 1 solution in **Solutions** screen (**e.g. Solution A**). Below are the steps;
  * Let's assume Solution B, which contains recent development, is deployed on clients servers,
  * This means there can be multiple deployments and in time this list can grow,
@@ -26,6 +28,7 @@ CRMSolutionManager brings 2 new features, **Patches To Solution** and **Apply So
  * Upgrades main solution's version,
  * Revemos the upgrade solution
 
+![Apply Solution Upgrade](https://github.com/osmanium/CRMSolutionManager/blob/develop/Docs/apply_solution_upgrade.gif)
 
 ### Installation
 
@@ -37,6 +40,7 @@ After importing, navigate to Settings -> Soltuions page and it can be found in t
 ### Releases
 
 * v0.1.0.0 - Beta
+
 
 
 
