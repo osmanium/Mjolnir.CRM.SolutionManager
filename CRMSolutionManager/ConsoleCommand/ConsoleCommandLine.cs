@@ -109,10 +109,11 @@ namespace ConsoleCommandLine
             string commandText = string.Empty;
 
             //Find the mathcing command through attributes
-            var commandKey = Parameters.Keys.FirstOrDefault(f => f.ToLowerInvariant() == "command".ToLowerInvariant());
+            var commandKey = Commands.Where(w => w.Item1.ToLowerInvariant() == args.FirstOrDefault().ToLowerInvariant())
+                                     .FirstOrDefault();
 
-            if (!string.IsNullOrWhiteSpace(commandKey))
-                commandText = Parameters[commandKey];
+            if (commandKey != null && !string.IsNullOrWhiteSpace(commandKey.Item1))
+                commandText = commandKey.Item1;
             else
             {
                 tracer.Trace("Command not found.");
@@ -128,6 +129,7 @@ namespace ConsoleCommandLine
         private object ExecuteCommand(string commandText, ITracingService tracer, object input)
         {
             var command = Commands.FirstOrDefault(w => w.Item1.ToLowerInvariant() == commandText.ToLowerInvariant());
+
 
             if (command.Item2.DependentCommand != null)
             {
