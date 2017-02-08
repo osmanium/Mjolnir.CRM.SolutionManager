@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace Common.EntityManagers
 {
     public class SolutionManager : EntityManagerBase
     {

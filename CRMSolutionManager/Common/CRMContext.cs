@@ -16,8 +16,8 @@ namespace Common
 
         public Guid UserId { get; private set; }
 
-        public CRMContext(ITracingService TracingService, IPluginExecutionContext PluginExecutionContext, 
-            IOrganizationService OrganizationService, IServiceProvider ServiceProvider, Guid UserId)
+        public CRMContext(IOrganizationService OrganizationService, Guid UserId,
+            ITracingService TracingService, IPluginExecutionContext PluginExecutionContext = null, IServiceProvider ServiceProvider = null)
         {
             this.TracingService = TracingService;
             this.PluginExecutionContext = PluginExecutionContext;
