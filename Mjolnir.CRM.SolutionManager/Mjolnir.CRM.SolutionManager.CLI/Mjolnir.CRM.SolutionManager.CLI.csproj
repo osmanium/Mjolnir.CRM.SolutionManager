@@ -7,8 +7,8 @@
     <ProjectGuid>{F2F64181-08C2-4E88-9ED2-DF2E71CEB3E1}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CRMSolutionManager.CLI</RootNamespace>
-    <AssemblyName>CRMSolutionManager.CLI</AssemblyName>
+    <RootNamespace>Mjolnir.CRM.SolutionManager.CLI</RootNamespace>
+    <AssemblyName>Mjolnir.CRM.SolutionManager.CLI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -65,8 +65,12 @@
       <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.8.2.0.2\lib\net452\Microsoft.Xrm.Tooling.Connector.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
+    <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0.2\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mjolnir.CRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d6209e65847448cd, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Common.1.0.0\lib\net452\Mjolnir.CRM.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework" />
@@ -110,10 +114,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mjolnir.CRM.Common\Mjolnir.CRM.Common.csproj">
-      <Project>{c2d2815e-0618-4daf-9829-c96ad1abf54f}</Project>
-      <Name>Mjolnir.CRM.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Mjolnir.CRM.SolutionManager\Mjolnir.CRM.SolutionManager.csproj">
       <Project>{3812eea5-7296-4ad0-b9bf-3f16d5cac7a8}</Project>
       <Name>Mjolnir.CRM.SolutionManager</Name>

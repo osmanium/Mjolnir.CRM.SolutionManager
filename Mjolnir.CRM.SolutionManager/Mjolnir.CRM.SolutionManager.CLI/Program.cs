@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace Mjolnir.CRM.SolutionManager.CLI
 {
-
     class Program
     {
         static void Main(string[] args)
@@ -20,8 +19,25 @@ namespace Mjolnir.CRM.SolutionManager.CLI
             Console.ForegroundColor = ConsoleColor.Green;
 
             var commandLine = Mjolnir.ConsoleCommandLine.ConsoleCommandLine.Instance;
+            commandLine.HeaderAction = () =>
+            {
+                Console.WriteLine("==========================================================================");
+                
+                Console.WriteLine(@" __  __        _    ____    _        _   _   _____   _____  
+|  \/  |      | |  / __ \  | |      | \ | | |_   _| |  __ \ 
+| \  / |      | | | |  | | | |      |  \| |   | |   | |__) |
+| |\/| |  _   | | | |  | | | |      | . ` |   | |   |  _  / 
+| |  | | | |__| | | |__| | | |____  | |\  |  _| |_  | | \ \ 
+|_|  |_|  \____/   \____/  |______| |_| \_| |_____| |_|  \_\                      
+                                    ");
+                Console.WriteLine("CRM SOLUTION MANAGER        ");
+                Console.WriteLine("==========================================================================");
+                Console.WriteLine("");
+            };
+
 
             commandLine.Initialize();
+
             commandLine.Run(args);
         }
     }

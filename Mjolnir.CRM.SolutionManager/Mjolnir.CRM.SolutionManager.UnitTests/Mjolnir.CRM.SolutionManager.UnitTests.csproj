@@ -55,17 +55,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mjolnir.CRM.Common\Mjolnir.CRM.Common.csproj">
-      <Project>{c2d2815e-0618-4daf-9829-c96ad1abf54f}</Project>
-      <Name>Mjolnir.CRM.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Mjolnir.CRM.SolutionManager\Mjolnir.CRM.SolutionManager.csproj">
       <Project>{3812eea5-7296-4ad0-b9bf-3f16d5cac7a8}</Project>
       <Name>Mjolnir.CRM.SolutionManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mjolnir.CRM.JavaScriptOperation\Mjolnir.CRM.JavaScriptOperation.csproj">
-      <Project>{763fa72c-80fa-4c76-8ab4-85bc61ec73c5}</Project>
-      <Name>Mjolnir.CRM.JavaScriptOperation</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

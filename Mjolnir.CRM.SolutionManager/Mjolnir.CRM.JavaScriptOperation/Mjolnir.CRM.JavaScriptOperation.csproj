@@ -101,12 +101,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Mjolnir.CRM.Common\Mjolnir.CRM.Common.csproj">
-      <Project>{c2d2815e-0618-4daf-9829-c96ad1abf54f}</Project>
-      <Name>Mjolnir.CRM.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
