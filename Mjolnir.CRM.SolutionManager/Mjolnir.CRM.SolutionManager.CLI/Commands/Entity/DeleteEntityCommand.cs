@@ -2,7 +2,7 @@
 using Microsoft.Xrm.Sdk.Messages;
 using Mjolnir.ConsoleCommandLine;
 using Mjolnir.ConsoleCommandLine.InputAttributes;
-using Mjolnir.CRM.Common;
+using Mjolnir.CRM.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace Mjolnir.CRM.SolutionManager.CLI.Commands.Entity
             {
                 tracer.Trace($"Deleting entity {EntitySchemeName}...");
 
-                CRMContext ctx = (CRMContext)input;
+                CrmContext ctx = (CrmContext)input;
 
                 DeleteEntityRequest request = new DeleteEntityRequest()
                 {

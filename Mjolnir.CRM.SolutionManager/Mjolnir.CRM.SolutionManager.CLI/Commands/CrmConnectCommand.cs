@@ -2,7 +2,8 @@
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Tooling.Connector;
 using Mjolnir.ConsoleCommandLine;
-using Mjolnir.CRM.Common;
+using Mjolnir.CRM.Core;
+using Mjolnir.CRM.Core.Loggers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -83,7 +84,7 @@ namespace Mjolnir.CRM.SolutionManager.CLI.Commands
                 return null;
             }
             
-            return new CRMContext(_orgService, _orgService.CallerId, tracer, null, null);
+            return new CrmContext(_orgService, _orgService.CallerId, new CrmLogger(tracer, System.Diagnostics.TraceLevel.Info), null, null);
         }
     }
 }
