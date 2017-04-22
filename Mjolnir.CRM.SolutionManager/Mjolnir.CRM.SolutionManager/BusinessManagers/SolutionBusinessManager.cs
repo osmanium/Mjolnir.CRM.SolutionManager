@@ -143,7 +143,7 @@ namespace Mjolnir.CRM.SolutionManager.BusinessManagers
 
         //    return res;
         //}
-        internal PublishAllResponse PublishAll(PublishAllRequest req, PublishAllResponse res, CrmContext context)
+        public PublishAllResponse PublishAll(PublishAllRequest req, PublishAllResponse res, CrmContext context)
         {
             throw new NotImplementedException();
         }

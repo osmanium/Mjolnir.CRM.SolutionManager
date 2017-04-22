@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 
 namespace Mjolnir.CRM.SolutionManager.Operations.Solution.WebResource
 {
-
     [ConsoleCommandAttribute(
         Command = "CompareWebResourcesInCRMDEConfig",
         Desription = "",
@@ -43,30 +42,29 @@ namespace Mjolnir.CRM.SolutionManager.Operations.Solution.WebResource
                                                                     .Files
                                                                         .Select(s => s.WebResourceId.ToString()).ToArray());
 
-                
-                tracer.Trace($"Comparing web resources with local files");
+
+                tracer.Trace($"Comparing web resources with local files, total file count: {webResourcesWithContents.Count}");
                 foreach (var webResource in webResourcesWithContents)
                 {
-                    //TODO : Convert webResource Entity to WebResourceEntity type
-
-                    //TODO : Read local file content and convert to base64
-                    string localWebResourceContent = null;
                     string localWebResourceContentBase64 = null;
 
                     var webResourceFile = crmDeveloperExtensionsManager.WebResourceDeployerModel.Files.Where(w => w.WebResourceId == webResource.Id).First();
 
-                    using (StreamReader sr = new StreamReader(webResourceFile.Path))
+                    var configFolderPath = Path.GetDirectoryName(CRMDeveloperExtensionsConfigPath);
+                    try
                     {
-                        localWebResourceContent = sr.ReadToEnd();
+                        localWebResourceContentBase64 = Utils.FileUtilities.ReadFileContentInBase64(Path.Combine(configFolderPath, webResourceFile.Path.Replace('/', '\\').TrimStart('\\')));
 
-                        //localWebResourceContentBase64 = localWebResourceContent.
+                        //TODO : Compare with web resource fetched from CRM
+                        if (localWebResourceContentBase64 != webResource.Content)
+                        {
+                            tracer.Trace($"WebResource : {webResource.Name} is different.");
+                        }
                     }
-
-
-
-                    //TODO : Compare with web resource fetched from CRM
-
-                    //TODO : If it is not equal, write to console
+                    catch (Exception ex)
+                    {
+                        tracer.Trace($"Error : {ex.Message} ");
+                    }
                 }
 
 

@@ -26,12 +26,14 @@ namespace Mjolnir.CRM.SolutionManager.Operations.Solution
 
         public override object ExecuteCommand(ITracingService tracer, object input)
         {
-            throw new NotImplementedException();
+            CrmContext ctx = input as CrmContext;
+            return new Mjolnir.CRM.SolutionManager.BusinessManagers.SolutionBusiness().PublishAll(new PublishAllRequest(), null, ctx);
         }
 
         public override PublishAllResponse ExecuteJavascriptOperation(PublishAllRequest req, PublishAllResponse res, CrmContext context)
         {
-            return new Mjolnir.CRM.SolutionManager.BusinessManagers.SolutionBusiness().PublishAll(req, res, context); ;
+            //TODO : Move to constants
+            throw new NotSupportedException("This functionality is not supported in CRM, please use command line interface.");
         }
     }
 }

@@ -62,8 +62,8 @@
     <Reference Include="Microsoft.Xrm.Tooling.Connector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.8.2.0.5\lib\net452\Microsoft.Xrm.Tooling.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.12, Culture=neutral, PublicKeyToken=027f82b864606f48, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0.12\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
+    <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.13, Culture=neutral, PublicKeyToken=027f82b864606f48, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0.13\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
     </Reference>
     <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.3, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
       <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0.3\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
@@ -125,7 +125,6 @@
     <Content Include="Configuration\Js\jquery_3.1.1.min.js" />
     <Content Include="Configuration\Js\JSON2.js" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(TargetDir)\ILMerge.exe" copy "$(ProjectDir)..\..\Tools\ILMerge.exe" "$(TargetDir)"

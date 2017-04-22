@@ -21,5 +21,11 @@ namespace Mjolnir.CRM.SolutionManager.Utils
             var bytes = Encoding.UTF8.GetBytes(fileContent);
             return Convert.ToBase64String(bytes);
         }
+
+        public static string ConvertContentToBase64(string content)
+        {
+            var bytes = Encoding.UTF8.GetBytes(content);
+            return Convert.ToBase64String(bytes);
+        }
     }
 }
