@@ -1,17 +1,25 @@
-﻿using System;
+﻿using Mjolnir.CRM.Core;
+using Mjolnir.CRM.Core.EntityManagers;
+using Mjolnir.CRM.JavaScriptOperation;
+using Mjolnir.CRM.SolutionManager.BusinessManagers;
+using Mjolnir.CRM.SolutionManager.Infrastructure;
+using Mjolnir.CRM.SolutionManager.Infrastructure.ApplySolutionUpgrade;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xrm.Sdk;
-using Mjolnir.ConsoleCommandLine;
-using Mjolnir.ConsoleCommandLine.InputAttributes;
-using Mjolnir.CRM.Core;
-using Mjolnir.CRM.Sdk;
-using Mjolnir.CRM.SolutionManager.Infrastructure.ApplySolutionUpgrade;
 
-namespace Mjolnir.CRM.SolutionManager.CLI.Commands.Solution
+namespace Mjolnir.CRM.SolutionManager.Operations.Solution
 {
+    //public class ApplySolutionUpgradeOperation : JavaScriptOperationBase<ApplySolutionUpgradeRequest, ApplySolutionUpgradeResponse>
+    //{
+    //    public override ApplySolutionUpgradeResponse ExecuteInternal(ApplySolutionUpgradeRequest req, ApplySolutionUpgradeResponse res, CRMContext context)
+    //    {
+    //        return new SolutionBusiness().ApplySolutionUpgrade(req, res, context); ;
+    //    }
+    //}
+
     //[ConsoleCommandAttribute(
     //    Command = "ApplySolutionUpgrade",
     //    Desription = "",

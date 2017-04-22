@@ -66,53 +66,26 @@
     <Reference Include="Microsoft.Xrm.Tooling.Connector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.8.2.0.5\lib\net452\Microsoft.Xrm.Tooling.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.3, Culture=neutral, PublicKeyToken=027f82b864606f48, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0.3\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
+    <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.11, Culture=neutral, PublicKeyToken=027f82b864606f48, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0.11\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
+    <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.3, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0.3\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.Sdk, Version=1.1.0.0, Culture=neutral, PublicKeyToken=de24a750daa51714, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.Sdk.1.1.0\lib\net461\Mjolnir.CRM.Sdk.dll</HintPath>
+    <Reference Include="Mjolnir.CRM.Sdk, Version=1.1.0.2, Culture=neutral, PublicKeyToken=de24a750daa51714, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Sdk.1.1.0.2\lib\net461\Mjolnir.CRM.Sdk.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Activities" />
-    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.DirectoryServices.AccountManagement" />
-    <Reference Include="System.IdentityModel" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Web" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.Workflow.Activities" />
-    <Reference Include="System.Workflow.ComponentModel" />
-    <Reference Include="System.Workflow.Runtime" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\CRMDeveloperExtensionsManager.cs" />
-    <Compile Include="Commands\CrmConnectCommand.cs" />
-    <Compile Include="Commands\Entity\DeleteEntityCommand.cs" />
-    <Compile Include="Commands\Solution\ApplySolutionUpgradeCommand.cs" />
-    <Compile Include="Commands\Solution\ConvertPatchToSolutionCommand.cs" />
-    <Compile Include="Commands\Solution\ExportSolutionCommand.cs" />
-    <Compile Include="Commands\Solution\PublishAllCommand.cs" />
-    <Compile Include="Commands\WebResource\CompareWebResourcesInCRMDEConfigCommand.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Models\CRMDeveloperExtensions\ConnectionModel.cs" />
-    <Compile Include="Models\CRMDeveloperExtensions\FileModel.cs" />
-    <Compile Include="Models\CRMDeveloperExtensions\WebResourceDeployerModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -12,7 +12,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mjolnir.CRM.SolutionManager.CLI.Commands
+namespace Mjolnir.CRM.SolutionManager.Operations.CRM
 {
     [ConsoleCommandAttribute(
         Command = "CrmConnect",
@@ -25,7 +25,7 @@ namespace Mjolnir.CRM.SolutionManager.CLI.Commands
             return _sourceCRMServiceClient.OrganizationServiceProxy;
         }
 
-        public override object Execute(ITracingService tracer, object input)
+        public override object ExecuteCommand(ITracingService tracer, object input)
         {
             OrganizationServiceProxy _orgService = null;
 

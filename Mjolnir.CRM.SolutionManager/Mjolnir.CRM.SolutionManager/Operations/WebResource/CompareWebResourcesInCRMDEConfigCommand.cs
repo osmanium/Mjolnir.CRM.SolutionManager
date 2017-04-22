@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Client;
 using Mjolnir.ConsoleCommandLine;
 using Mjolnir.ConsoleCommandLine.InputAttributes;
 using Mjolnir.CRM.Core;
 using Mjolnir.CRM.Sdk.Entities;
-using Mjolnir.CRM.SolutionManager.CLI.Business;
+using Mjolnir.CRM.SolutionManager.BusinessManagers;
+using Mjolnir.CRM.SolutionManager.Operations.CRM;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,8 +13,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mjolnir.CRM.SolutionManager.CLI.Commands.WebResource
-{ 
+namespace Mjolnir.CRM.SolutionManager.Operations.Solution.WebResource
+{
 
     [ConsoleCommandAttribute(
         Command = "CompareWebResourcesInCRMDEConfig",
@@ -23,7 +25,7 @@ namespace Mjolnir.CRM.SolutionManager.CLI.Commands.WebResource
         [StringInput(Description = "CRMDeveloperExtensionsConfig Path", IsRequired = true)]
         public string CRMDeveloperExtensionsConfigPath { get; set; }
 
-        public override object Execute(ITracingService tracer, object input)
+        public override object ExecuteCommand(ITracingService tracer, object input)
         {
             try
             {
@@ -31,10 +33,9 @@ namespace Mjolnir.CRM.SolutionManager.CLI.Commands.WebResource
 
                 CrmContext ctx = (CrmContext)input;
 
-                CRMDeveloperExtensionsManager crmDeveloperExtensionsManager = new CRMDeveloperExtensionsManager(CRMDeveloperExtensionsConfigPath);
-                
-                
                 var webResourceManager = new Core.EntityManagers.WebResourceManager(ctx);
+                var crmDeveloperExtensionsManager = new CRMDeveloperExtensionsBusinessManager(CRMDeveloperExtensionsConfigPath);
+
 
                 tracer.Trace($"Getting web resource with contents");
                 var webResourcesWithContents = webResourceManager.GetWebResourcesContentsByIds(crmDeveloperExtensionsManager
@@ -42,6 +43,7 @@ namespace Mjolnir.CRM.SolutionManager.CLI.Commands.WebResource
                                                                     .Files
                                                                         .Select(s => s.WebResourceId.ToString()).ToArray());
 
+                
                 tracer.Trace($"Comparing web resources with local files");
                 foreach (var webResource in webResourcesWithContents)
                 {

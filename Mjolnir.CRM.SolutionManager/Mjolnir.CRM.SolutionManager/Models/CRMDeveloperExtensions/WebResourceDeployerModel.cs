@@ -1,12 +1,11 @@
-﻿using Mjolnir.CRM.SolutionManager.CLI.Models.CRMDeveloperExtensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Mjolnir.CRM.SolutionManager.CLI.CRMDeveloperExtensions.Models
+namespace Mjolnir.CRM.SolutionManager.Models.CRMDeveloperExtensions
 {
     [Serializable]
     [System.Xml.Serialization.XmlRoot("WebResourceDeployer")]

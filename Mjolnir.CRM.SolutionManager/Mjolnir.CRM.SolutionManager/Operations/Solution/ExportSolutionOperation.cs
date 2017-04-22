@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xrm.Sdk;
 using Mjolnir.ConsoleCommandLine.InputAttributes;
 
-namespace Mjolnir.CRM.SolutionManager.CLI.Commands.Solution
+namespace Mjolnir.CRM.SolutionManager.Operations.Solution
 {
     //[ConsoleCommandAttribute(
     //    Command = "ApplySolutionUpgrade",

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mjolnir.CRM.SolutionManager.CLI.Models.CRMDeveloperExtensions
+namespace Mjolnir.CRM.SolutionManager.Models.CRMDeveloperExtensions
 {
     [Serializable]
     public class FileModel

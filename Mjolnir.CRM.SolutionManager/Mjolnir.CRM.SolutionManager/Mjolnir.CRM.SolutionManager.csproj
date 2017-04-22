@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Mjolnir.CRM.SolutionManager</RootNamespace>
     <AssemblyName>Mjolnir.CRM.SolutionManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,50 +62,57 @@
     <Reference Include="Microsoft.Xrm.Tooling.Connector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.8.2.0.5\lib\net452\Microsoft.Xrm.Tooling.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d6209e65847448cd, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.Common.1.0.0\lib\net452\Mjolnir.CRM.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.11, Culture=neutral, PublicKeyToken=027f82b864606f48, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0.11\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.JavaScriptOperation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.JavaScriptOperation.1.0.0\lib\net452\Mjolnir.CRM.JavaScriptOperation.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.3, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0.3\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Mjolnir.CRM.JavaScriptOperation, Version=1.1.1.3, Culture=neutral, PublicKeyToken=5281ee3c2eb3fb8f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.JavaScriptOperation.1.1.1.3\lib\net461\Mjolnir.CRM.JavaScriptOperation.dll</HintPath>
+    </Reference>
+    <Reference Include="Mjolnir.CRM.Sdk, Version=1.1.0.2, Culture=neutral, PublicKeyToken=de24a750daa51714, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Sdk.1.1.0.2\lib\net461\Mjolnir.CRM.Sdk.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Activities" />
-    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.DirectoryServices.AccountManagement" />
-    <Reference Include="System.IdentityModel" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Web" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.Workflow.Activities" />
-    <Reference Include="System.Workflow.ComponentModel" />
-    <Reference Include="System.Workflow.Runtime" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\SolutionBusiness.cs" />
+    <Compile Include="BusinessManagers\CRMDeveloperExtensionsBusinessManager.cs" />
+    <Compile Include="BusinessManagers\SolutionBusinessManager.cs" />
+    <Compile Include="BusinessManagers\WebResourceBusinessManager.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Infrastructure\ApplySolutionUpgrade\ApplySolutionUpgradeResponse.cs" />
     <Compile Include="Infrastructure\ApplySolutionUpgrade\ApplySolutionUpgradeRequest.cs" />
     <Compile Include="Infrastructure\ConvertPatchesToSolution\ConvertPatchesToSolutionRequest.cs" />
     <Compile Include="Infrastructure\ConvertPatchesToSolution\ConvertPatchesToSolutionResponse.cs" />
-    <Compile Include="JsOperations\ApplySolutionUpgradeOperation.cs" />
-    <Compile Include="JsOperations\ConvertPatchesToSolutionOperation.cs" />
+    <Compile Include="Infrastructure\PublishAll\PublishAllRequest.cs" />
+    <Compile Include="Infrastructure\PublishAll\PublishAllResponse.cs" />
+    <Compile Include="Models\CRMDeveloperExtensions\ConnectionModel.cs" />
+    <Compile Include="Models\CRMDeveloperExtensions\FileModel.cs" />
+    <Compile Include="Models\CRMDeveloperExtensions\WebResourceDeployerModel.cs" />
+    <Compile Include="Operations\CRM\CrmConnectCommand.cs" />
+    <Compile Include="Operations\Entity\DeleteEntityCommand.cs" />
+    <Compile Include="Operations\Solution\ApplySolutionUpgradeOperation.cs" />
+    <Compile Include="Operations\Solution\ConvertPatchesToSolutionOperation.cs" />
+    <Compile Include="Operations\Solution\ExportSolutionOperation.cs" />
+    <Compile Include="Operations\Solution\PublishAllOperation.cs" />
+    <Compile Include="Operations\WebResource\CompareWebResourcesInCRMDEConfigCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\FileUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -117,12 +125,13 @@
     <Content Include="Configuration\Js\jquery_3.1.1.min.js" />
     <Content Include="Configuration\Js\JSON2.js" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(TargetDir)\ILMerge.exe" copy "$(ProjectDir)..\..\Tools\ILMerge.exe" "$(TargetDir)"
 copy /Y "$(ProjectDir)CRMSolutionManager.snk"  "$(TargetDir)CRMSolutionManager.snk"
 IF NOT EXIST "$(TargetDir)MergedCRMSolutionManager" MKDIR "$(TargetDir)MergedCRMSolutionManager"
-"$(TargetDir)ilmerge" /keyfile:CRMSolutionManager.snk  /copyattrs /targetplatform:4.0,"C:\Windows\Microsoft.NET\Framework64\v4.0.30319" /out:"$(TargetDir)MergedCRMSolutionManager\Mjolnir.CRM.SolutionManagerMerged.dll" "Mjolnir.CRM.Common.dll" "Mjolnir.CRM.SolutionManager.dll" "Mjolnir.CRM.JavaScriptOperation.dll" "Newtonsoft.Json.dll"</PostBuildEvent>
+"$(TargetDir)ilmerge" /keyfile:CRMSolutionManager.snk  /copyattrs /targetplatform:4.0,"C:\Windows\Microsoft.NET\Framework64\v4.0.30319" /out:"$(TargetDir)MergedCRMSolutionManager\Mjolnir.CRM.SolutionManagerMerged.dll" "Mjolnir.CRM.Sdk.dll" "Mjolnir.CRM.Core.dll" "Mjolnir.CRM.SolutionManager.dll" "Mjolnir.CRM.JavaScriptOperation.dll" "Newtonsoft.Json.dll" "Mjolnir.ConsoleCommandLine.dll"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

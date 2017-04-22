@@ -1,4 +1,4 @@
-﻿using Mjolnir.CRM.SolutionManager.CLI.CRMDeveloperExtensions.Models;
+﻿using Mjolnir.CRM.SolutionManager.Models.CRMDeveloperExtensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Mjolnir.CRM.SolutionManager.CLI.Business
+namespace Mjolnir.CRM.SolutionManager.BusinessManagers
 {
-    public class CRMDeveloperExtensionsManager
+    public class CRMDeveloperExtensionsBusinessManager
     {
         public WebResourceDeployerModel WebResourceDeployerModel { get; private set; }
 
-        public CRMDeveloperExtensionsManager(string configPath)
+        public CRMDeveloperExtensionsBusinessManager(string configPath)
         {
             this.WebResourceDeployerModel = ReadConfigFromFile(configPath);
         }
