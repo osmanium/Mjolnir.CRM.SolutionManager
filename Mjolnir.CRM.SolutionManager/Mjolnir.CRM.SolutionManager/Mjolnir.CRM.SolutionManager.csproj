@@ -62,14 +62,14 @@
     <Reference Include="Microsoft.Xrm.Tooling.Connector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.8.2.0.5\lib\net452\Microsoft.Xrm.Tooling.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.11, Culture=neutral, PublicKeyToken=027f82b864606f48, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0.11\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
+    <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.12, Culture=neutral, PublicKeyToken=027f82b864606f48, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0.12\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
     </Reference>
     <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.3, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
       <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0.3\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.JavaScriptOperation, Version=1.1.1.3, Culture=neutral, PublicKeyToken=5281ee3c2eb3fb8f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.JavaScriptOperation.1.1.1.3\lib\net461\Mjolnir.CRM.JavaScriptOperation.dll</HintPath>
+    <Reference Include="Mjolnir.CRM.JavaScriptOperation, Version=1.1.1.4, Culture=neutral, PublicKeyToken=5281ee3c2eb3fb8f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.JavaScriptOperation.1.1.1.4\lib\net461\Mjolnir.CRM.JavaScriptOperation.dll</HintPath>
     </Reference>
     <Reference Include="Mjolnir.CRM.Sdk, Version=1.1.0.2, Culture=neutral, PublicKeyToken=de24a750daa51714, processorArchitecture=MSIL">
       <HintPath>..\packages\Mjolnir.CRM.Sdk.1.1.0.2\lib\net461\Mjolnir.CRM.Sdk.dll</HintPath>
@@ -129,9 +129,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(TargetDir)\ILMerge.exe" copy "$(ProjectDir)..\..\Tools\ILMerge.exe" "$(TargetDir)"
-copy /Y "$(ProjectDir)CRMSolutionManager.snk"  "$(TargetDir)CRMSolutionManager.snk"
+copy /Y "$(ProjectDir)Mjolnir.CRM.SolutionManager.snk"  "$(TargetDir)Mjolnir.CRM.SolutionManager.snk"
 IF NOT EXIST "$(TargetDir)MergedCRMSolutionManager" MKDIR "$(TargetDir)MergedCRMSolutionManager"
-"$(TargetDir)ilmerge" /keyfile:CRMSolutionManager.snk  /copyattrs /targetplatform:4.0,"C:\Windows\Microsoft.NET\Framework64\v4.0.30319" /out:"$(TargetDir)MergedCRMSolutionManager\Mjolnir.CRM.SolutionManagerMerged.dll" "Mjolnir.CRM.Sdk.dll" "Mjolnir.CRM.Core.dll" "Mjolnir.CRM.SolutionManager.dll" "Mjolnir.CRM.JavaScriptOperation.dll" "Newtonsoft.Json.dll" "Mjolnir.ConsoleCommandLine.dll"</PostBuildEvent>
+"$(TargetDir)ilmerge" /keyfile:Mjolnir.CRM.SolutionManager.snk  /copyattrs /targetplatform:4.0,"C:\Windows\Microsoft.NET\Framework64\v4.0.30319" /out:"$(TargetDir)MergedCRMSolutionManager\Mjolnir.CRM.SolutionManagerMerged.dll" "Mjolnir.CRM.Sdk.dll" "Mjolnir.CRM.Core.dll" "Mjolnir.CRM.SolutionManager.dll" "Mjolnir.CRM.JavaScriptOperation.dll" "Newtonsoft.Json.dll" "Mjolnir.ConsoleCommandLine.dll"
+IF NOT EXIST "$(SolutionDir)Mjolnir.CRM.SolutionManager.CLI\bin\Debug\Commands" MKDIR "$(SolutionDir)Mjolnir.CRM.SolutionManager.CLI\bin\Debug\Commands"
+copy /Y "$(TargetDir)Mjolnir.CRM.SolutionManager.dll"  "$(SolutionDir)Mjolnir.CRM.SolutionManager.CLI\bin\Debug\Commands\Mjolnir.CRM.SolutionManager.dll"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
