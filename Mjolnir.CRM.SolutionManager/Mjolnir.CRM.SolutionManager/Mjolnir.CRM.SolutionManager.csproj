@@ -65,14 +65,14 @@
     <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.13, Culture=neutral, PublicKeyToken=027f82b864606f48, processorArchitecture=MSIL">
       <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0.13\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.3, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0.3\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
+    <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.8, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0.8\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
     </Reference>
     <Reference Include="Mjolnir.CRM.JavaScriptOperation, Version=1.1.1.4, Culture=neutral, PublicKeyToken=5281ee3c2eb3fb8f, processorArchitecture=MSIL">
       <HintPath>..\packages\Mjolnir.CRM.JavaScriptOperation.1.1.1.4\lib\net461\Mjolnir.CRM.JavaScriptOperation.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.Sdk, Version=1.1.0.2, Culture=neutral, PublicKeyToken=de24a750daa51714, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.Sdk.1.1.0.2\lib\net461\Mjolnir.CRM.Sdk.dll</HintPath>
+    <Reference Include="Mjolnir.CRM.Sdk, Version=1.1.0.8, Culture=neutral, PublicKeyToken=de24a750daa51714, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Sdk.1.1.0.8\lib\net461\Mjolnir.CRM.Sdk.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -86,12 +86,14 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessManagers\CRMDeveloperExtensionsBusinessManager.cs" />
+    <Compile Include="BusinessManagers\RoleBusinessManager.cs" />
     <Compile Include="BusinessManagers\SolutionBusinessManager.cs" />
     <Compile Include="BusinessManagers\WebResourceBusinessManager.cs" />
     <Compile Include="Constants.cs" />
@@ -99,13 +101,14 @@
     <Compile Include="Infrastructure\ApplySolutionUpgrade\ApplySolutionUpgradeRequest.cs" />
     <Compile Include="Infrastructure\ConvertPatchesToSolution\ConvertPatchesToSolutionRequest.cs" />
     <Compile Include="Infrastructure\ConvertPatchesToSolution\ConvertPatchesToSolutionResponse.cs" />
-    <Compile Include="Infrastructure\PublishAll\PublishAllRequest.cs" />
-    <Compile Include="Infrastructure\PublishAll\PublishAllResponse.cs" />
     <Compile Include="Models\CRMDeveloperExtensions\ConnectionModel.cs" />
     <Compile Include="Models\CRMDeveloperExtensions\FileModel.cs" />
     <Compile Include="Models\CRMDeveloperExtensions\WebResourceDeployerModel.cs" />
-    <Compile Include="Operations\CRM\CrmConnectCommand.cs" />
-    <Compile Include="Operations\Entity\DeleteEntityCommand.cs" />
+    <Compile Include="Operations\CRM\ConnectCrmSourceAndTargetCommand.cs" />
+    <Compile Include="Operations\CRM\ConnectCrmTargetCommand.cs" />
+    <Compile Include="Operations\CRM\ConnectCrmSourceCommand.cs" />
+    <Compile Include="Operations\Entity\DeleteEntityOperation.cs" />
+    <Compile Include="Operations\SecurityRole\CompareSecurityRolesCommand.cs" />
     <Compile Include="Operations\Solution\ApplySolutionUpgradeOperation.cs" />
     <Compile Include="Operations\Solution\ConvertPatchesToSolutionOperation.cs" />
     <Compile Include="Operations\Solution\ExportSolutionOperation.cs" />
@@ -124,6 +127,9 @@
     <Content Include="Configuration\Js\CRMSolutionManagerLibrary.js" />
     <Content Include="Configuration\Js\jquery_3.1.1.min.js" />
     <Content Include="Configuration\Js\JSON2.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Operations\OptionSet\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

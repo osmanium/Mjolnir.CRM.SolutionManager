@@ -69,11 +69,11 @@
     <Reference Include="Mjolnir.ConsoleCommandLine, Version=1.0.0.13, Culture=neutral, PublicKeyToken=027f82b864606f48, processorArchitecture=MSIL">
       <HintPath>..\packages\Mjolnir.ConsoleCommandLine.1.0.0.13\lib\net461\Mjolnir.ConsoleCommandLine.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.3, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0.3\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
+    <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.8, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0.8\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.Sdk, Version=1.1.0.2, Culture=neutral, PublicKeyToken=de24a750daa51714, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.Sdk.1.1.0.2\lib\net461\Mjolnir.CRM.Sdk.dll</HintPath>
+    <Reference Include="Mjolnir.CRM.Sdk, Version=1.1.0.8, Culture=neutral, PublicKeyToken=de24a750daa51714, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Sdk.1.1.0.8\lib\net461\Mjolnir.CRM.Sdk.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

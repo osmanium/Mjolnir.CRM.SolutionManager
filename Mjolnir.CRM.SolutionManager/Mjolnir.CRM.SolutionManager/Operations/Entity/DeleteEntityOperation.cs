@@ -14,9 +14,9 @@ namespace Mjolnir.CRM.SolutionManager.Operations.Entity
 {
     [ConsoleCommandAttribute(
         Command = "DeleteEntity",
-        Desription = "",
-        DependentCommand = typeof(CrmConnectCommand))]
-    public class DeleteEntityCommand : ConsoleCommandBase
+        Desription = "Deletes given entity(metadata) from customizations",
+        DependentCommand = typeof(ConnectCrmSourceCommand))]
+    public class DeleteEntityOperation : ConsoleCommandBase
     {
         [StringInput(Description = "Entity scheme name to be deleted.", IsRequired = true)]
         public string EntitySchemeName { get; set; }

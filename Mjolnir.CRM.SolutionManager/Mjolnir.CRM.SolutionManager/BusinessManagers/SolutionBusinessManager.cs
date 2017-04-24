@@ -8,7 +8,7 @@ using Mjolnir.CRM.Core.EntityManagers;
 using Mjolnir.CRM.Core;
 using Mjolnir.CRM.SolutionManager.Infrastructure.ApplySolutionUpgrade;
 using Mjolnir.CRM.SolutionManager.Infrastructure.ConvertPatchesToSolution;
-using Mjolnir.CRM.SolutionManager.Infrastructure.PublishAll;
+//using Mjolnir.CRM.SolutionManager.Infrastructure.PublishAll;
 
 namespace Mjolnir.CRM.SolutionManager.BusinessManagers
 {
@@ -143,9 +143,9 @@ namespace Mjolnir.CRM.SolutionManager.BusinessManagers
 
         //    return res;
         //}
-        public PublishAllResponse PublishAll(PublishAllRequest req, PublishAllResponse res, CrmContext context)
-        {
-            throw new NotImplementedException();
-        }
+        //public PublishAllResponse PublishAll(PublishAllRequest req, PublishAllResponse res, CrmContext context)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

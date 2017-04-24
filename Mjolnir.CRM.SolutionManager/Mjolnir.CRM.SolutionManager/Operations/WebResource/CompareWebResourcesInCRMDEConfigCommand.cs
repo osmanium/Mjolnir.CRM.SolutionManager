@@ -18,7 +18,7 @@ namespace Mjolnir.CRM.SolutionManager.Operations.Solution.WebResource
     [ConsoleCommandAttribute(
         Command = "CompareWebResourcesInCRMDEConfig",
         Desription = "",
-        DependentCommand = typeof(CrmConnectCommand))]
+        DependentCommand = typeof(ConnectCrmSourceCommand))]
     public class CompareWebResourcesInCRMDEConfigCommand : ConsoleCommandBase
     {
         [StringInput(Description = "CRMDeveloperExtensionsConfig Path", IsRequired = true)]

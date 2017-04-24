@@ -61,11 +61,11 @@
     <Reference Include="Microsoft.Xrm.Tooling.Connector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.8.2.0.5\lib\net452\Microsoft.Xrm.Tooling.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.3, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0.3\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
+    <Reference Include="Mjolnir.CRM.Core, Version=1.1.0.8, Culture=neutral, PublicKeyToken=ecd99ffb424cbd91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Core.1.1.0.8\lib\net461\Mjolnir.CRM.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Mjolnir.CRM.Sdk, Version=1.1.0.2, Culture=neutral, PublicKeyToken=de24a750daa51714, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mjolnir.CRM.Sdk.1.1.0.2\lib\net461\Mjolnir.CRM.Sdk.dll</HintPath>
+    <Reference Include="Mjolnir.CRM.Sdk, Version=1.1.0.8, Culture=neutral, PublicKeyToken=de24a750daa51714, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mjolnir.CRM.Sdk.1.1.0.8\lib\net461\Mjolnir.CRM.Sdk.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="Shouldly, Version=2.8.2.0, Culture=neutral, PublicKeyToken=6042cbcb05cbc941, processorArchitecture=MSIL">

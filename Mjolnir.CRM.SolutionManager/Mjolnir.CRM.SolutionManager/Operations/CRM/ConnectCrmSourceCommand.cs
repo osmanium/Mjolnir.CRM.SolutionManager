@@ -15,9 +15,9 @@ using System.Threading.Tasks;
 namespace Mjolnir.CRM.SolutionManager.Operations.CRM
 {
     [ConsoleCommandAttribute(
-        Command = "CrmConnect",
+        Command = "ConnectCrmSource",
         Desription = "")]
-    public class CrmConnectCommand : ConsoleCommandBase
+    public class ConnectCrmSourceCommand : ConsoleCommandBase
     {
         private static OrganizationServiceProxy ConnectCrm(string userName, string serverName, string password, string domain, string port, string organization, bool useSSL)
         {
