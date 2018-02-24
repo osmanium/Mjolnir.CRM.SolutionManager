@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xrm.Sdk;
-using Mjolnir.ConsoleCommandLine.InputAttributes;
 
 namespace Mjolnir.CRM.SolutionManager.Operations.Solution
 {

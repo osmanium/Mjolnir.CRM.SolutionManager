@@ -18,7 +18,7 @@ namespace SolutionManager.UnitTests
         [TestMethod]
         public void should_read_crmdeveloperextensions_config()
         {
-            CRMDeveloperExtensionsBusinessManager manager = new CRMDeveloperExtensionsBusinessManager(CRMDEVELOPEREXTENSIONTS_CONFIG_PATH);
+            CrmDeveloperExtensionsBusinessManager manager = new CrmDeveloperExtensionsBusinessManager(CRMDEVELOPEREXTENSIONTS_CONFIG_PATH);
 
             manager.ShouldSatisfyAllConditions(
                 () => manager.ShouldNotBeNull(),
@@ -30,7 +30,7 @@ namespace SolutionManager.UnitTests
         [TestMethod]
         public void should_compare_crm_and_developerextension_webresources()
         {
-            CRMDeveloperExtensionsBusinessManager manager = new CRMDeveloperExtensionsBusinessManager(CRMDEVELOPEREXTENSIONTS_CONFIG_PATH);
+            CrmDeveloperExtensionsBusinessManager manager = new CrmDeveloperExtensionsBusinessManager(CRMDEVELOPEREXTENSIONTS_CONFIG_PATH);
             
 
             manager.ShouldSatisfyAllConditions(

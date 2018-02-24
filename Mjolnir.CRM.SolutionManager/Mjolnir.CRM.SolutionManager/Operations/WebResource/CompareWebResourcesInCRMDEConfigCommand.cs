@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Mjolnir.ConsoleCommandLine;
-using Mjolnir.ConsoleCommandLine.InputAttributes;
 using Mjolnir.CRM.Core;
 using Mjolnir.CRM.Sdk.Entities;
 using Mjolnir.CRM.SolutionManager.BusinessManagers;
@@ -12,19 +11,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommandLine;
 
 namespace Mjolnir.CRM.SolutionManager.Operations.Solution.WebResource
 {
-    [ConsoleCommandAttribute(
-        Command = "CompareWebResourcesInCRMDEConfig",
-        Desription = "",
-        DependentCommand = typeof(ConnectCrmSourceCommand))]
+    [Verb("Compare-WebResourcesInCRMDEConfig")]
     public class CompareWebResourcesInCRMDEConfigCommand : ConsoleCommandBase
     {
-        [StringInput(Description = "CRMDeveloperExtensionsConfig Path", IsRequired = true)]
+        [Option('c',"config",
+            Required = true,
+            HelpText = "CRMDeveloperExtensionsConfig Path.")]
         public string CRMDeveloperExtensionsConfigPath { get; set; }
 
-        public override object ExecuteCommand(ITracingService tracer, object input)
+        public override async Task<object> ExecuteCommand(ConsoleCommandLine.Tracer.ITracingService tracer, object input)
         {
             try
             {
@@ -33,11 +32,11 @@ namespace Mjolnir.CRM.SolutionManager.Operations.Solution.WebResource
                 CrmContext ctx = (CrmContext)input;
 
                 var webResourceManager = new Core.EntityManagers.WebResourceManager(ctx);
-                var crmDeveloperExtensionsManager = new CRMDeveloperExtensionsBusinessManager(CRMDeveloperExtensionsConfigPath);
+                var crmDeveloperExtensionsManager = new CrmDeveloperExtensionsBusinessManager(CRMDeveloperExtensionsConfigPath);
 
 
                 tracer.Trace($"Getting web resource with contents");
-                var webResourcesWithContents = webResourceManager.GetWebResourcesContentsByIds(crmDeveloperExtensionsManager
+                var webResourcesWithContents = await webResourceManager.GetWebResourcesContentsByIdsAsync(crmDeveloperExtensionsManager
                                                                     .WebResourceDeployerModel
                                                                     .Files
                                                                         .Select(s => s.WebResourceId.ToString()).ToArray());
@@ -77,5 +76,7 @@ namespace Mjolnir.CRM.SolutionManager.Operations.Solution.WebResource
                 return false;
             }
         }
+
+        
     }
 }

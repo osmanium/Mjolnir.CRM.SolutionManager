@@ -4,47 +4,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommandLine;
+using Mjolnir.ConsoleCommandLine;
 using Mjolnir.CRM.JavaScriptOperation;
 using Mjolnir.CRM.SolutionManager.Infrastructure.ConvertPatchesToSolution;
 using Mjolnir.CRM.Core;
+using Mjolnir.CRM.SolutionManager.Operations.CRM;
+using ITracingService = Mjolnir.ConsoleCommandLine.Tracer.ITracingService;
 
 namespace Mjolnir.CRM.SolutionManager.Operations.Solution
 {
-    //public class ConvertPatchesToSolutionOperation : JavaScriptOperationBase<ConvertPatchesToSolutionRequest, ConvertPatchesToSolutionResponse>
-    //{
-    //    public override ConvertPatchesToSolutionResponse ExecuteInternal(ConvertPatchesToSolutionRequest req, ConvertPatchesToSolutionResponse res, CRMContext context)
-    //    {
-    //        return new Mjolnir.CRM.SolutionManager.Business.SolutionBusiness().ConvertPatchToSolution(req, res, context); ;
-    //    }
-    //}
+    [Verb("Convert-PatchToSolution")]
+    public class ConvertPatchesToSolutionOperation : JavaScriptOperationBase<ConvertPatchesToSolutionRequest, ConvertPatchesToSolutionResponse>
+    {
+        [Option('s', "solutionuniquename",
+            Required = true,
+            HelpText = "Solution unique name to be merged with patches.")]
+        public string SelectedSolutionUniqueName { get; set; }
 
-    //[ConsoleCommandAttribute(
-    //    Command = "ConvertPatchToSolution",
-    //    Desription = "",
-    //    DependentCommand = typeof(CrmConnectCommand))]
-    //public class ConvertPatchesToSolutionCommand : ConsoleCommandBase
-    //{
-    //    [StringInput(Description = "Solution uniqye name to be merged with patches.", IsRequired = true)]
-    //    public string SelectedSolutionUniqueName { get; set; }
+        public override async Task<object> ExecuteCommand(ITracingService tracer, object input)
+        {
+            var sourceCrmContextCommand = new ConnectCrmSourceCommand();
+            var sourceCrmContext        = (CrmContext)await sourceCrmContextCommand.ExecuteCommand(tracer, input);
 
-    //    public override object Execute(ITracingService tracer, object input)
-    //    {
-    //        CrmContext context = (CrmContext)input;
+            var solutionId = new Core.EntityManagers.SolutionManager(sourceCrmContext).GetSolutionIdByUniqueSolutionName(SelectedSolutionUniqueName);
+            if (solutionId != Guid.Empty)
+            {
+                var req = new ConvertPatchesToSolutionRequest()
+                {
+                    SelectedSolutionIds = new [] { solutionId.ToString() }
+                };
 
-    //        var solutionId = Core.EntityManagers.SolutionManager.GetSolutionIdByUniqueSolutionName(SelectedSolutionId);
-    //        if (solutionId != Guid.Empty)
-    //        {
-    //            var req = new ConvertPatchesToSolutionRequest()
-    //            {
-    //                SelectedSolutionIds = new string[] { solutionId }
-    //            };
+                return new Mjolnir.CRM.SolutionManager.BusinessManagers.SolutionBusiness().ConvertPatchToSolution(req, new ConvertPatchesToSolutionResponse(), sourceCrmContext); ;
+            }
+            else
+            {
+                Console.WriteLine($"Solution with name : {SelectedSolutionUniqueName} not found.");
+                return false;
+            }
+        }
 
-    //            return new Mjolnir.CRM.SolutionManager.Business.SolutionBusiness().ConvertPatchToSolution(req, new ConvertPatchesToSolutionResponse(), context); ;
-    //        }
-    //        else
-    //        {
-    //            Console.WriteLine($"Solution with name : {SelectedSolutionUniqueName} not found.");
-    //        }
-    //    }
-    //}
+        public override ConvertPatchesToSolutionResponse ExecuteJavascriptOperation(ConvertPatchesToSolutionRequest  req,
+                                                                                    ConvertPatchesToSolutionResponse res, CrmContext context)
+        {
+            return new Mjolnir.CRM.SolutionManager.BusinessManagers.SolutionBusiness().ConvertPatchToSolution(req, res, context); ;
+        }
+    }
 }

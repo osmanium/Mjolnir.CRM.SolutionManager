@@ -36,7 +36,7 @@ namespace Mjolnir.CRM.SolutionManager.CLI
             };
 
 
-            commandLine.Initialize();
+            commandLine.Initialize(true);
 
             commandLine.Run(args);
         }

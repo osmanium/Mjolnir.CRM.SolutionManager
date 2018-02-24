@@ -3,46 +3,39 @@ using Mjolnir.CRM.SolutionManager.Operations.CRM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xrm.Sdk;
-using Mjolnir.ConsoleCommandLine.InputAttributes;
+using CommandLine;
+using Mjolnir.ConsoleCommandLine.Tracer;
 using Mjolnir.CRM.Core;
-using Mjolnir.CRM.SolutionManager.BusinessManagers;
 using Mjolnir.CRM.Core.EntityManagers;
-using Microsoft.Xrm.Sdk.Client;
-using System.Configuration;
-using Microsoft.Xrm.Tooling.Connector;
-using System.Net;
-using Mjolnir.CRM.Sdk.Extensions;
 using Mjolnir.CRM.Sdk.Entities;
+using Mjolnir.CRM.Sdk.Extensions;
 
 namespace Mjolnir.CRM.SolutionManager.Operations.SecurityRole
 {
-    [ConsoleCommandAttribute(
-        Command = "CompareSecurityRoles",
-        Desription = "",
-        DependentCommand = typeof(ConnectCrmSourceAndTargetCommand))]
+    [Verb("Compare-SecurityRoles")]
     public class CompareSecurityRolesCommand : ConsoleCommandBase
     {
-        [StringInput(Description = "Security Role to be compared", IsRequired = true)]
+        
+        [Option("firstrole",
+            Required = true,
+            HelpText = "Security Role to be compared")]
         public string SourceSecurityRoleName { get; set; }
 
 
-        [StringInput(Description = "Security Role to be compared with", IsRequired = true)]
+        [Option("secondrole",
+            Required = true,
+            HelpText = "Security Role to be compared with")]
         public string TargetSecurityRoleName { get; set; }
 
-        public override object ExecuteCommand(ITracingService tracer, object input)
+
+        public override async Task<object> ExecuteCommand(ITracingService tracer, object input)
         {
             try
             {
-
-
-                if (input == null)
-                {
-                    tracer.Trace($"Connections are not avilable, {typeof(CompareSecurityRolesCommand).Name} is cancelled..");
-                    return null;
-                }
+                var sourceAndTargetCrmContextCommand = new ConnectCrmSourceAndTargetCommand();
+                input = await sourceAndTargetCrmContextCommand.ExecuteCommand(tracer, input);
+                
 
                 var crmContexts = input as CrmContext[];
 
@@ -60,10 +53,10 @@ namespace Mjolnir.CRM.SolutionManager.Operations.SecurityRole
                     RolePrivilegesManager targetRolePrivilegesManager = new RolePrivilegesManager(targetCrmContext);
 
                     tracer.Trace("Retrieving all source security roles..");
-                    var allSourceRoles = sourceRoleManager.GetAllRootLevelRoles();
+                    var allSourceRoles = await sourceRoleManager.GetAllRootLevelRolesAsync();
 
                     tracer.Trace("Retrieving all target security roles..");
-                    var allTargetRoles = targetRoleManager.GetAllRootLevelRoles();
+                    var allTargetRoles = await targetRoleManager.GetAllRootLevelRolesAsync();
 
                     tracer.Trace($"Source Role Count : {allSourceRoles.Count}, Target Role Count : {allTargetRoles.Count}");
 
@@ -75,10 +68,10 @@ namespace Mjolnir.CRM.SolutionManager.Operations.SecurityRole
 
                         //Get both roles privileges
                         tracer.Trace($"Retrieving privileges for (Source) - {sourceRole.Name}..");
-                        var sourceRolePrivileges = sourceRolePrivilegesManager.GetRolePrivileges(sourceRole.Id);
+                        var sourceRolePrivileges = await sourceRolePrivilegesManager.GetRolePrivilegesAsync(sourceRole.Id);
 
                         tracer.Trace($"Retrieving privileges for (Target) - {targetRole.Name}..");
-                        var targetRolePrivileges = targetRolePrivilegesManager.GetRolePrivileges(targetRole.Id);
+                        var targetRolePrivileges = await targetRolePrivilegesManager.GetRolePrivilegesAsync(targetRole.Id);
 
                         var sourceRoleStatus = !(sourceRolePrivileges == null || !sourceRolePrivileges.Any());
                         var targetRoleStatus = !(targetRolePrivileges == null || !targetRolePrivileges.Any());
@@ -121,7 +114,7 @@ namespace Mjolnir.CRM.SolutionManager.Operations.SecurityRole
                         tracer.Trace($"Iterating source role {sourceRole.Name} privileges..");
                         foreach (var sourceRolePrivilege in sourceRolePrivileges)
                         {
-                            var targetRolePrivilege = targetRolePrivileges.Where(w => w.Id == sourceRolePrivilege.Id).FirstOrDefault();
+                            var targetRolePrivilege = targetRolePrivileges.FirstOrDefault(w => w.Id == sourceRolePrivilege.Id);
 
                             if (targetRolePrivilege == null)
                             {
@@ -130,7 +123,7 @@ namespace Mjolnir.CRM.SolutionManager.Operations.SecurityRole
                                 break;
                             }
 
-                            if (!sourceRolePrivilege.Compare(targetRolePrivilege))
+                            if (!sourceRolePrivilege.CompareValues(targetRolePrivilege).IsEqual)
                             {
                                 attributeCompareResult = false;
                                 differentSecurityRoles.Add(sourceRole.Name);
@@ -147,7 +140,7 @@ namespace Mjolnir.CRM.SolutionManager.Operations.SecurityRole
                         tracer.Trace($"Iterating target role {sourceRole.Name} privileges..");
                         foreach (var targetRolePrivilege in targetRolePrivileges)
                         {
-                            var sourceRolePrivilege = sourceRolePrivileges.Where(w => w.Id == targetRolePrivilege.Id).FirstOrDefault();
+                            var sourceRolePrivilege = sourceRolePrivileges.FirstOrDefault(w => w.Id == targetRolePrivilege.Id);
 
                             if (sourceRolePrivilege != null)
                             {
@@ -182,7 +175,7 @@ namespace Mjolnir.CRM.SolutionManager.Operations.SecurityRole
 
         private RoleEntity GetTargetRoleFromList(List<RoleEntity> targetRoleList, Guid targetRoleId)
         {
-            return targetRoleList.Where(w => w.Id == targetRoleId).FirstOrDefault();
+            return targetRoleList.FirstOrDefault(w => w.Id == targetRoleId);
         }
     }
 }

@@ -9,50 +9,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommandLine;
+using Mjolnir.ConsoleCommandLine.Tracer;
+using Mjolnir.CRM.SolutionManager.Operations.CRM;
 
 namespace Mjolnir.CRM.SolutionManager.Operations.Solution
 {
-    //public class ApplySolutionUpgradeOperation : JavaScriptOperationBase<ApplySolutionUpgradeRequest, ApplySolutionUpgradeResponse>
-    //{
-    //    public override ApplySolutionUpgradeResponse ExecuteInternal(ApplySolutionUpgradeRequest req, ApplySolutionUpgradeResponse res, CRMContext context)
-    //    {
-    //        return new SolutionBusiness().ApplySolutionUpgrade(req, res, context); ;
-    //    }
-    //}
+    [Verb("Apply-SolutionUpgrade")]
+    public class ApplySolutionUpgradeOperation : JavaScriptOperationBase<ApplySolutionUpgradeRequest, ApplySolutionUpgradeResponse>
+    {
+        [Option('s', "solutionuniquename",
+            Required = true,
+            HelpText = "Solution uniuq name to be upgraded.")]
+        public string SelectedSolutionUniqueName { get; set; }
 
-    //[ConsoleCommandAttribute(
-    //    Command = "ApplySolutionUpgrade",
-    //    Desription = "",
-    //    DependentCommand = typeof(CrmConnectCommand))]
-    //public class ApplySolutionUpgradeCommand : ConsoleCommandBase
-    //{
-    //    [StringInput(Description = "Solution uniuq name to be upgraded.", IsRequired = true)]
-    //    public string SelectedSolutionUniqueName { get; set; }
+        public override async Task<object> ExecuteCommand(ITracingService tracer, object input)
+        {
+            var sourceCrmContextCommand = new ConnectCrmSourceCommand();
+            var sourceCrmContext        = (CrmContext)await sourceCrmContextCommand.ExecuteCommand(tracer, input);
 
-    //    /// <summary>
-    //    /// 
-    //    /// </summary>
-    //    /// <param name="tracer"></param>
-    //    /// <param name="input"></param>
-    //    /// <returns>ApplySolutionUpgradeResponse</returns>
-    //    public override object Execute(ITracingService tracer, object input)
-    //    {
-    //        CrmContext context = (CrmContext)input;
+            var solutionId = new Core.EntityManagers.SolutionManager(sourceCrmContext).GetSolutionIdByUniqueSolutionName(SelectedSolutionUniqueName);
 
-    //        var solutionId = Core.EntityManagers.SolutionManager.GetSolutionIdByUniqueSolutionName(SelectedSolutionUniqueName);
-    //        if (solutionId != Guid.Empty)
-    //        {
-    //            var req = new ApplySolutionUpgradeRequest()
-    //            {
-    //                SelectedSolutionIds = new string[] { solutionId }
-    //            };
+            if (solutionId != Guid.Empty)
+            {
+                var req = new ApplySolutionUpgradeRequest()
+                {
+                    SelectedSolutionIds = new string[] { solutionId.ToString() }
+                };
 
-    //            return new Mjolnir.CRM.SolutionManager.Business.SolutionBusiness().ApplySolutionUpgrade(req, new ApplySolutionUpgradeResponse(), context); ;
-    //        }
-    //        else
-    //        {
-    //            Console.WriteLine($"Solution with name : {SelectedSolutionUniqueName} not found.");
-    //        }
-    //    }
-    //}
+                return new Mjolnir.CRM.SolutionManager.BusinessManagers.SolutionBusiness().ApplySolutionUpgrade(req, new ApplySolutionUpgradeResponse(), sourceCrmContext); ;
+            }
+            else
+            {
+                Console.WriteLine($"Solution with name : {SelectedSolutionUniqueName} not found.");
+                return false;
+            }
+        }
+
+        public override ApplySolutionUpgradeResponse ExecuteJavascriptOperation(ApplySolutionUpgradeRequest req,
+                                                                                ApplySolutionUpgradeResponse res, CrmContext context)
+        {
+            return new SolutionBusiness().ApplySolutionUpgrade(req, res, context);
+        }
+    }
 }
